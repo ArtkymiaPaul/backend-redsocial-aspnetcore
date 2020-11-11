@@ -1,3 +1,4 @@
+using backend_redsocial_aspnetcore.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend_redsocial_aspnetcore
 {
@@ -26,6 +28,9 @@ namespace backend_redsocial_aspnetcore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<RedSocialContext>(options =>
+            options.UseSqlServer(@"Data Source=localhost;Initial Catalog=redsocial;Integrated Security=true;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
